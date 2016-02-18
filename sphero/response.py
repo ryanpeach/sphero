@@ -33,6 +33,9 @@ class Response(object):
     def body(self):
         return struct.unpack(self.fmt, self.data)
 
+    def __str__(self):
+        return str(self.header) + ',' + str(self.data)
+
 class GetRGB(Response):
     def __init__(self, header, data):
         super(GetRGB, self).__init__(header, data)
@@ -43,6 +46,8 @@ class GetRGB(Response):
     def __iter__(self):
         return iter((self.r,self.g,self.b))
 
+    def __str__(self):
+        return str(self.r) + ',' + str(self.g) + ',' + str(self.b)
 
 class GetBluetoothInfo(Response):
     def __init__(self, header, body):
